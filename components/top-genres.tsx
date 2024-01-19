@@ -58,7 +58,7 @@ const TopGenres = ({ className, ...props }: ComponentProps<"div">) => {
     <div {...props} className={twMerge(className)}>
       <UserSection label="Top Genres" />
       <Tabs defaultValue="short_term" className="mt-4">
-        <TabsList className="w-full md:w-1/2">
+        <TabsList className="w-full border border-black/10 dark:border-white/10 md:w-1/2">
           <TabsTrigger
             onClick={() => setTimeframe("short_term")}
             value="short_term"
