@@ -9,7 +9,7 @@ const TopArtists = () => {
     <div>
       <UserSection label="Top Artists" />
       <Tabs defaultValue="short_term" className="mt-4">
-        <TabsList>
+        <TabsList className="w-full md:w-1/2">
           <TabsTrigger value="short_term">Last month</TabsTrigger>
           <TabsTrigger value="medium_term">Last 6 months</TabsTrigger>
           <TabsTrigger value="long_term">All time</TabsTrigger>
