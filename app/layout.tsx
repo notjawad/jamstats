@@ -8,13 +8,13 @@ import { Session } from "next-auth";
 
 import Navbar from "@/components/navbar";
 
-export interface Props {
-  session: Session | null;
+const RootLayout = ({
+  children,
+  session,
+}: {
   children: React.ReactNode;
-  token: string | null;
-}
-
-const RootLayout = ({ children, session }: Props) => {
+  session: Session;
+}) => {
   return (
     <html lang="en">
       <body>
