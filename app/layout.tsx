@@ -14,7 +14,7 @@ interface Props {
   token: string | null;
 }
 
-export const RootLayout: React.FC<Props> = ({ children, session }) => {
+export default function RootLayout({ session, children, token }: Props) {
   return (
     <html lang="en">
       <body>
@@ -32,4 +32,4 @@ export const RootLayout: React.FC<Props> = ({ children, session }) => {
       </body>
     </html>
   );
-};
+}
