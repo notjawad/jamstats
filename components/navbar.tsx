@@ -47,6 +47,7 @@ const Navbar = ({ className, ...props }: ComponentProps<"nav">) => {
         <Link href="/" className="flex min-w-0 flex-shrink items-center">
           <BsSoundwave className="h-10 w-10" />
         </Link>
+
         {session && (
           <div className="flex items-center">
             <ThemeToggle />
