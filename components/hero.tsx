@@ -1,0 +1,31 @@
+import React, { ComponentProps } from "react";
+import { signIn } from "next-auth/react";
+import LoginButton from "./login-button";
+
+const Hero = ({ className, ...props }: ComponentProps<"div">) => {
+  const handleSignIn = () => {
+    signIn("spotify", { callbackUrl: `${window.location.origin}/dashboard` });
+  };
+
+  return (
+    <div {...props} className="container">
+      <>
+        <div className="xs:overflow-hidden mx-auto mt-10 pb-8 sm:mt-12 md:mt-16 md:overflow-visible lg:mt-20">
+          <h1 className="mx-auto pb-4 text-3xl font-extrabold tracking-tight text-gray-900 sm:pb-4 sm:text-4xl">
+            Your Spotify Library, <br className="hidden md:block" />
+            <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
+              visualized.
+            </span>
+          </h1>
+          <p className="mx-auto pb-4 text-base text-gray-500 sm:pb-4 sm:text-lg md:text-xl lg:mx-0">
+            Get statistics and insights about your top artists, tracks, and
+            genres.
+          </p>
+          <LoginButton onClick={handleSignIn} />
+        </div>
+      </>
+    </div>
+  );
+};
+
+export default Hero;

@@ -1,0 +1,153 @@
+@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "SF Pro Display", sans-serif;
+}
+
+.login-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  line-height: 1;
+  border-radius: 0.7rem;
+  padding: 0.815rem 1.232rem;
+  cursor: pointer;
+  border: none;
+  background: #34d399;
+
+  transition: background 0.4s linear;
+  will-change: background;
+}
+
+.login-button:hover {
+  background: #28a376;
+}
+
+.login-button:hover span:nth-of-type(1) em {
+  opacity: 0;
+  transform: rotateX(90deg) scaleX(0.9) translate3d(0, -10px, 0);
+}
+
+.login-button:hover span:nth-of-type(2) em {
+  opacity: 1;
+  transform: rotateX(0deg) scaleX(1) translateZ(0);
+  transition:
+    transform 0.75s cubic-bezier(0.645, 0.045, 0.355, 1),
+    opacity 0.35s linear 0.3s;
+}
+
+span {
+  position: relative;
+  display: block;
+  perspective: 108px;
+}
+
+span:nth-of-type(2) {
+  position: absolute;
+}
+
+em {
+  font-style: normal;
+  display: inline-block;
+  font-size: 1.125rem;
+  color: white;
+  font-weight: 600;
+  will-change: transform, opacity, transition;
+  transition:
+    transform 0.55s cubic-bezier(0.645, 0.045, 0.355, 1),
+    opacity 0.35s linear 0.2s;
+}
+
+span:nth-of-type(1) em {
+  transform-origin: top;
+}
+
+span:nth-of-type(2) em {
+  opacity: 0;
+  transform: rotateX(-90deg) scaleX(0.9) translate3d(0, 10px, 0);
+  transform-origin: bottom;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    @apply h-full;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
