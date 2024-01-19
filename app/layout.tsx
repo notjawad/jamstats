@@ -8,13 +8,13 @@ import { Session } from "next-auth";
 
 import Navbar from "@/components/navbar";
 
-export default function RootLayout({
-  session,
-  children,
-}: {
-  session: Session;
-  children: any;
-}) {
+interface Props {
+  session: Session | null;
+  children: React.ReactNode;
+  token: string | null;
+}
+
+const RootLayout: React.FC<Props> = ({ children, session }) => {
   return (
     <html lang="en">
       <body>
@@ -32,4 +32,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;
