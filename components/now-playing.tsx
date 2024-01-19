@@ -52,7 +52,7 @@ const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
   return (
     <div
       className={twMerge(
-        "flex items-center justify-center rounded bg-green-500 p-2 shadow-md",
+        "flex items-center justify-center rounded bg-gradient-to-r from-green-600 to-green-500 p-2",
         className ?? "",
       )}
       {...props}
@@ -62,7 +62,7 @@ const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
           <img
             src={track.album.images[0].url}
             alt="Album Art"
-            className="mr-3 h-10 w-10 rounded"
+            className="mr-3 h-10 w-10 rounded shadow-md"
           />
           <div className="flex flex-col items-start">
             <div className="flex items-center">
