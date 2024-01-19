@@ -97,7 +97,7 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
             </div>
           ))}
       </div>
-      <div className="mt-36 inline-block min-w-full py-2 align-middle">
+      <div className="mt-36 flex min-w-full items-center py-2 align-middle md:inline-block">
         <ScrollArea className="h-[400px] rounded-md border p-4">
           <table className="min-w-full">
             <thead>

@@ -14,7 +14,10 @@ const GenreSection = ({
   ...props
 }: GenreSectionProps) => {
   return (
-    <div className="inline-block min-w-full py-2 align-middle" {...props}>
+    <div
+      className="flex min-w-full items-center py-2 align-middle md:inline-block"
+      {...props}
+    >
       <ScrollArea className="h-[400px] rounded-md border p-4">
         <table className="min-w-full">
           <thead>

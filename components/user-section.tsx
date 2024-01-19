@@ -28,7 +28,7 @@ const UserSection = ({ className, label, ...props }: UserSectionProps) => {
           <p className="text-sm text-zinc-600 dark:text-zinc-400">{label}</p>
         </div>
       </div>
-      <NowPlaying />
+      <NowPlaying className="hidden sm:flex" />
     </div>
   );
 };

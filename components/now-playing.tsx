@@ -4,6 +4,7 @@ import { Track } from "@/lib/spotify/types";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
 const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
   const [track, setTrack] = React.useState<Track | null>(null);
@@ -13,6 +14,7 @@ const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
 
   useEffect(() => {
     if (session && "access_token" in session) {
+      console.log(session.access_token);
       const fetchNowPlaying = async () => {
         try {
           const response = await axios.get(
@@ -49,7 +51,10 @@ const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
 
   return (
     <div
-      className="flex items-center justify-center rounded bg-green-500 p-2 shadow-md"
+      className={twMerge(
+        "flex items-center justify-center rounded bg-green-500 p-2 shadow-md",
+        className ?? "",
+      )}
       {...props}
     >
       {track && (
