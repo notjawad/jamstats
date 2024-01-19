@@ -2,13 +2,15 @@
 
 import React from "react";
 
-import { Spinner } from "@/components/spinner";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
+import { Spinner } from "@/components/spinner";
 import TopArtists from "@/components/top-artists";
 import TopTracks from "@/components/top-tracks";
 import TopGenres from "@/components/top-genres";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 const Dashboard = () => {
   const { data: session, status } = useSession();
@@ -34,6 +36,17 @@ const Dashboard = () => {
       <div className="container">
         <div className="mx-auto">
           <div className="pb-10">
+            <div>
+              <h1 className="mb-2 inline-block text-3xl font-extrabold tracking-tight">
+                Dashboard
+              </h1>
+              <p className="text mb-12 xl:mr-64">
+                Explore your top artists, tracks, and{" "}
+                <Link href="/genres">
+                  <Badge variant="outline">genres</Badge>
+                </Link>
+              </p>
+            </div>
             <TopArtists />
             <TopTracks className="mt-4" />
             <TopGenres className="mt-4" />
