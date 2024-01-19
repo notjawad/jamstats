@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 "use client";
 
 import "./globals.css";
@@ -6,7 +8,12 @@ import { SessionProvider } from "next-auth/react";
 
 import Navbar from "@/components/navbar";
 
-export default function RootLayout({ children, session }) {
+type RootLayoutProps = {
+  children: React.ReactNode;
+  session: any;
+};
+
+export default function RootLayout({ children, session }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
