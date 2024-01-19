@@ -6,12 +6,7 @@ import { SessionProvider } from "next-auth/react";
 
 import Navbar from "@/components/navbar";
 
-type RootLayoutProps = {
-  children: React.ReactNode;
-  session: any;
-};
-
-export default function RootLayout({ children, session }: RootLayoutProps) {
+export default function RootLayout({ children, session }) {
   return (
     <html lang="en">
       <body>
