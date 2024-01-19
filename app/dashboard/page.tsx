@@ -25,6 +25,10 @@ const Dashboard = () => {
     redirect("/");
   }
 
+  if (!session) {
+    redirect("/");
+  }
+
   return (
     <div className="mx-auto w-screen max-w-3xl px-4 sm:px-6 md:px-12">
       <div className="container">
