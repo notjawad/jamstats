@@ -13,6 +13,9 @@ const handler = NextAuth({
           scope: scopes,
         },
       },
+      httpOptions: {
+        timeout: 10000,
+      },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
