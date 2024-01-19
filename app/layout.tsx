@@ -1,20 +1,17 @@
 "use client";
 
 import "./globals.css";
-
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SessionProvider } from "next-auth/react";
-import { Session } from "next-auth";
 
 import Navbar from "@/components/navbar";
 
-const RootLayout = ({
-  children,
-  session,
-}: {
+type RootLayoutProps = {
   children: React.ReactNode;
-  session: Session;
-}) => {
+  session: any;
+};
+
+export default function RootLayout({ children, session }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
@@ -32,6 +29,4 @@ const RootLayout = ({
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}
