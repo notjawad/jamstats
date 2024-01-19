@@ -1,6 +1,9 @@
 import React, { ComponentProps } from "react";
-import { ScrollArea } from "./ui/scroll-area";
 import Link from "next/link";
+
+import { ScrollArea } from "./ui/scroll-area";
+import { Badge } from "./ui/badge";
+import { ExternalLink } from "lucide-react";
 
 interface GenreSectionProps extends ComponentProps<"div"> {
   timeframe: string;
@@ -18,7 +21,7 @@ const GenreSection = ({
       className="flex min-w-full items-center py-2 align-middle md:inline-block"
       {...props}
     >
-      <ScrollArea className="h-[400px] rounded-md border p-4">
+      <ScrollArea className="h-[400px] w-full rounded-md border p-4">
         <table className="min-w-full">
           <thead>
             <tr>
@@ -37,7 +40,17 @@ const GenreSection = ({
                   {index + 1}
                 </td>
                 <td className="whitespace-nowrap px-6 py-4 text-sm">
-                  <Link href={`/genres/${genre.genre}`}>{genre.genre}</Link>
+                  <Link href={`/genres/${genre.genre}`} passHref>
+                    <Badge
+                      variant="outline"
+                      className="group flex w-32 items-center justify-between"
+                    >
+                      <span className="truncate font-medium">
+                        {genre.genre}
+                      </span>
+                      <ExternalLink className="h-3 w-3 text-black/50 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100 dark:text-black dark:text-white/50" />
+                    </Badge>
+                  </Link>
                 </td>
               </tr>
             ))}
