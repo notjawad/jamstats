@@ -56,6 +56,7 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
     <div {...props}>
       <div className="flex flex-row space-x-4 pb-2">
         {type === "artists" &&
+          topArtists.length > 0 &&
           topArtists.slice(0, 4).map((artist) => (
             <div
               className="relative flex h-0 flex-1 items-center justify-center bg-gray-50"
@@ -77,6 +78,7 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
           ))}
 
         {type === "tracks" &&
+          topArtists.length > 0 &&
           topTracks.slice(0, 4).map((track) => (
             <div
               className="relative flex h-0 flex-1 items-center justify-center bg-gray-50"
@@ -115,6 +117,7 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
             </thead>
             <tbody className="divide-y divide-gray-200 dark:divide-white/10">
               {type === "artists" &&
+                topArtists.length > 0 &&
                 topArtists.map((artist, index) => (
                   <tr key={artist.id}>
                     <td className="whitespace-nowrap px-6 py-4 text-sm">
@@ -137,6 +140,7 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
                 ))}
 
               {type === "tracks" &&
+                topArtists.length > 0 &&
                 topTracks.map((track, index) => (
                   <tr key={track.id}>
                     <td className="whitespace-nowrap px-6 py-4 text-sm">
