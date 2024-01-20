@@ -72,6 +72,7 @@ export const PopularGenres = ({
               width={96}
               height={96}
               className="h-24 w-24 rounded-lg transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:drop-shadow-xl"
+              loading="lazy"
             />
             <span className="p-2 text-4xl font-semibold text-white">
               {toTitleCase(genre.name)}
