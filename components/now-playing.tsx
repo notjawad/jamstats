@@ -75,7 +75,9 @@ const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
                 className="font-semibold text-white hover:underline"
                 href={track.external_urls.spotify}
               >
-                {track.name}
+                {track.name.length > 25
+                  ? `${track.name.substring(0, 25)}...`
+                  : track.name}
               </Link>
               <div className="bars ml-4 mr-4 inline-flex h-3 items-end justify-between gap-[0.1875rem]">
                 <div className="bar bar1 w-1 bg-gray-100"></div>
