@@ -1,12 +1,13 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Tag } from "@/lib/spotify/types";
 import { Spinner } from "@/components/spinner";
 import axios from "axios";
 import { removeHtmlTags } from "@/lib/utils";
 import Artists from "./_components/artists";
+import { useSession } from "next-auth/react";
 
 const GenrePage = () => {
   const params = useParams<{ genreId: string }>();
@@ -14,6 +15,20 @@ const GenrePage = () => {
 
   const [genreInfo, setGenreInfo] = useState<Tag>();
   const [isLoading, setIsLoading] = useState(true);
+
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
+
+  if (status === "unauthenticated") {
+    redirect("/");
+  }
 
   useEffect(() => {
     const fetchGenreInfo = async () => {
