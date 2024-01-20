@@ -9,7 +9,7 @@ export function removeHtmlTags(str: string | undefined): string {
   return str.replace(/(<([^>]+)>)/gi, "");
 }
 
-export function toTitleCase(str: string): string {
+export function toTitleCase(str: string | undefined): string {
   if (!str) return "";
 
   return str.replace(
