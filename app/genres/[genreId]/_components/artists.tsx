@@ -9,6 +9,7 @@ import { Spinner } from "@/components/spinner";
 import { BsSpotify } from "react-icons/bs";
 
 import { Artist, TagArtist } from "@/lib/spotify/types";
+import { toTitleCase } from "@/lib/utils";
 
 interface ArtistsProps extends ComponentProps<"div"> {
   tag: string | undefined;
@@ -59,9 +60,15 @@ const Artists = ({ tag, className, ...props }: ArtistsProps) => {
     return null;
   }
 
+  if (artists.length === 0) {
+    return null;
+  }
+
   return (
     <div {...props}>
-      <h2 className="mb-4 text-xl font-bold">Top artists in {tag}</h2>
+      <h2 className="mb-4 text-xl font-bold">
+        Top artists in {toTitleCase(tag)}
+      </h2>
       <div className="grid grid-cols-3 gap-4">
         {artists.map((artist) => (
           <div
@@ -69,7 +76,11 @@ const Artists = ({ tag, className, ...props }: ArtistsProps) => {
             className="flex flex-col items-center justify-center rounded-md border border-black/10 bg-accent p-4 dark:border-white/10"
           >
             <Image
-              src={artist.spotify.images[0].url}
+              src={
+                artist.spotify.images && artist.spotify.images.length > 0
+                  ? artist.spotify.images[0].url
+                  : "/images/artist-placeholder.png"
+              }
               alt={artist.name}
               width={200}
               height={200}
