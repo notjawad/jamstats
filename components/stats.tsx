@@ -1,3 +1,5 @@
+"use client";
+
 import { useSession } from "next-auth/react";
 import React, { ComponentProps, useState, useEffect } from "react";
 
@@ -16,10 +18,11 @@ interface StatsProps extends ComponentProps<"div"> {
 }
 
 const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const [topArtists, setTopArtists] = useState<Artist[]>([]);
   const [topTracks, setTopTracks] = useState<Track[]>([]);
+  const [imagesLoading, setImagesLoading] = useState(true);
 
   useEffect(() => {
     if (!session) return;
@@ -56,33 +59,49 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
   return (
     <div {...props}>
       <div className="flex flex-row space-x-4 pb-2">
-        {type === "artists" &&
-          topArtists.length > 0 &&
-          topArtists.slice(0, 4).map((artist) => (
-            <div
-              className="relative flex h-0 flex-1 items-center justify-center bg-gray-50"
-              key={artist.id}
-            >
-              <Link
-                href={`/artist/${artist.id}`}
-                className="absolute inset-0 z-10"
+        {status === "loading"
+          ? [...Array(4)].map((_, index) => (
+              <div
+                className="relative flex h-0 flex-1 items-center justify-center bg-gray-50"
+                key={index}
               >
-                <Image
-                  src={artist.images[0].url}
-                  alt={artist.name}
-                  width={200}
-                  height={200}
-                  className="h-36 w-36 rounded-md border-white/20 object-cover dark:border"
-                />
-              </Link>
-            </div>
-          ))}
+                <div className="absolute inset-0 z-10">
+                  <div className="h-36 w-36 animate-pulse rounded-md border border-black/10 bg-accent dark:border-white/10" />
+                </div>
+              </div>
+            ))
+          : type === "artists" &&
+            topArtists.length > 0 &&
+            topArtists.slice(0, 4).map((artist) => (
+              <div
+                className="relative mt-2 flex h-0 flex-1 items-center justify-center bg-gray-50"
+                key={artist.id}
+              >
+                <Link
+                  href={`/artist/${artist.id}`}
+                  className="absolute inset-0 z-10"
+                >
+                  <Image
+                    src={artist.images[0].url}
+                    alt={artist.name}
+                    width={200}
+                    height={200}
+                    className="h-36 w-36 rounded-md border-white/20 object-cover opacity-0 transition-opacity duration-500 dark:border"
+                    loading="lazy"
+                    onLoad={(image) => {
+                      image.currentTarget.classList.remove("opacity-0");
+                      setImagesLoading(false);
+                    }}
+                  />
+                </Link>
+              </div>
+            ))}
 
         {type === "tracks" &&
           topTracks.length > 0 &&
           topTracks.slice(0, 4).map((track) => (
             <div
-              className="relative flex h-0 flex-1 items-center justify-center bg-gray-50"
+              className="relative mt-2 flex h-0 flex-1 items-center justify-center bg-gray-50"
               key={track.id}
             >
               <Link
@@ -94,7 +113,11 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
                   alt={track.name}
                   width={200}
                   height={200}
-                  className="h-36 w-36 rounded-md border-white/20 object-cover dark:border"
+                  className="h-36 w-36 rounded-md border-white/20 object-cover opacity-0 transition-opacity duration-500 ease-out dark:border"
+                  loading="lazy"
+                  onLoad={(image) => {
+                    image.currentTarget.classList.remove("opacity-0");
+                  }}
                 />
               </Link>
             </div>
@@ -108,8 +131,10 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
       >
         <ScrollArea
           className={cn(
-            "h-[400px] w-full rounded-md border p-4",
+            "h-[400px] w-full rounded-md border",
             topTracks.length > 0 && "mt-36",
+            status === "loading" && "mt-36",
+            imagesLoading && "mt-[145px]",
           )}
         >
           <table className="min-w-full">
