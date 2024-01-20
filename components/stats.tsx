@@ -8,6 +8,7 @@ import Link from "next/link";
 
 import { Artist, Track } from "@/lib/spotify/types";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
 
 interface StatsProps extends ComponentProps<"div"> {
   type: string;
@@ -78,7 +79,7 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
           ))}
 
         {type === "tracks" &&
-          topArtists.length > 0 &&
+          topTracks.length > 0 &&
           topTracks.slice(0, 4).map((track) => (
             <div
               className="relative flex h-0 flex-1 items-center justify-center bg-gray-50"
@@ -99,8 +100,18 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
             </div>
           ))}
       </div>
-      <div className="mt-36 flex min-w-full items-center py-2 align-middle md:inline-block">
-        <ScrollArea className="h-[400px] rounded-md border p-4">
+      <div
+        className={cn(
+          "flex min-w-full items-center py-2 align-middle md:inline-block",
+          topArtists.length > 0 ? "mt-36" : "",
+        )}
+      >
+        <ScrollArea
+          className={cn(
+            "h-[400px] rounded-md border p-4",
+            topTracks.length > 0 && "mt-36",
+          )}
+        >
           <table className="min-w-full">
             <thead>
               <tr>
@@ -117,7 +128,6 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
             </thead>
             <tbody className="divide-y divide-gray-200 dark:divide-white/10">
               {type === "artists" &&
-                topArtists.length > 0 &&
                 topArtists.map((artist, index) => (
                   <tr key={artist.id}>
                     <td className="whitespace-nowrap px-6 py-4 text-sm">
