@@ -46,6 +46,7 @@ const Navbar = ({ className, ...props }: ComponentProps<"nav">) => {
       <div className="mx-auto mb-6 flex max-w-3xl items-center justify-between px-4 py-4 sm:px-6 md:px-12">
         <Link href="/" className="flex min-w-0 flex-shrink items-center">
           <BsSoundwave className="h-10 w-10" />
+          <span className="ml-2 text-2xl font-bold">Spotstats</span>
         </Link>
 
         {session && (
