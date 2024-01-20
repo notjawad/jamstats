@@ -69,7 +69,7 @@ const Artists = ({ tag, className, ...props }: ArtistsProps) => {
       <h2 className="mb-4 text-xl font-bold">
         Top artists in {toTitleCase(tag)}
       </h2>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
         {artists.map((artist) => (
           <div
             key={artist.spotify.id}
@@ -90,11 +90,18 @@ const Artists = ({ tag, className, ...props }: ArtistsProps) => {
               {artist.name}
             </h3>
             <Link
-              className="mt-2 flex items-center gap-x-2 rounded-md border border-black/10 bg-white px-4 py-2 text-sm font-medium transition-colors duration-150 ease-in-out hover:border-black/20 hover:bg-black/10 dark:border-white/10 dark:bg-stone-800 dark:hover:border-white/20 dark:hover:bg-stone-700"
+              className="mt-2 hidden items-center gap-x-2 rounded-md border border-black/10 bg-white px-4 py-2 text-sm font-medium transition-colors duration-150 ease-in-out hover:border-black/20 hover:bg-black/10 dark:border-white/10 dark:bg-stone-800 dark:hover:border-white/20 dark:hover:bg-stone-700 md:flex"
               href={artist.spotify.external_urls.spotify}
             >
               <BsSpotify className="text-green-500" />
               Listen on Spotify
+            </Link>
+            <Link
+              className="mt-2 flex items-center gap-x-2 rounded-md border border-black/10 bg-white px-4 py-2 text-sm font-medium transition-colors duration-150 ease-in-out hover:border-black/20 hover:bg-black/10 dark:border-white/10 dark:bg-stone-800 dark:hover:border-white/20 dark:hover:bg-stone-700 md:hidden"
+              href={artist.spotify.external_urls.spotify}
+            >
+              <BsSpotify className="text-green-500" />
+              Listen
             </Link>
           </div>
         ))}
