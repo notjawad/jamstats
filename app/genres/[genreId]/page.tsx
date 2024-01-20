@@ -15,6 +15,18 @@ export async function generateMetadata({
 }) {
   return {
     title: `${toTitleCase(decodeURIComponent(params.genreId))} - Spotstats`,
+    description: `Spotstats - ${toTitleCase(
+      decodeURIComponent(params.genreId),
+    )}`,
+    openGraph: {
+      title: `${toTitleCase(decodeURIComponent(params.genreId))} - Spotstats`,
+      description: `Spotstats - ${toTitleCase(
+        decodeURIComponent(params.genreId),
+      )}`,
+      type: "website",
+      url: `https://spotstats.net/genres/${params.genreId}`,
+      site_name: "Spotstats",
+    },
   };
 }
 
