@@ -19,7 +19,6 @@ const Playlist = ({ genre, className, ...props }: PlaylistProps) => {
   useEffect(() => {
     if (session && "access_token" in session) {
       const fetchPlaylist = async () => {
-        console.log("fetching playlist", decodeURIComponent(genre));
         try {
           const response = await axios.get(
             "https://api.spotify.com/v1/search",
