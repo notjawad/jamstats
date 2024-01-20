@@ -18,14 +18,14 @@ body {
   padding: 0.815rem 1.232rem;
   cursor: pointer;
   border: none;
-  background: #34d399;
+  background: #47d97c;
 
   transition: background 0.4s linear;
   will-change: background;
 }
 
 .login-button:hover {
-  background: #28a376;
+  background: #31a35b;
 }
 
 .login-button:hover span:nth-of-type(1) em {
