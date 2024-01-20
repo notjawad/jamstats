@@ -18,7 +18,7 @@ export const PopularGenres = ({
       name: "hip hop",
       color: "bg-yellow-300",
       image: "/images/genres/hip-hop.png",
-      href: "/genres/hip-hop",
+      href: "/genres/hip hop",
     },
     {
       name: "rock",
