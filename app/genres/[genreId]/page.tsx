@@ -18,18 +18,6 @@ const GenrePage = () => {
 
   const { data: session, status } = useSession();
 
-  if (status === "loading") {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
-
-  if (status === "unauthenticated") {
-    redirect("/");
-  }
-
   useEffect(() => {
     const fetchGenreInfo = async () => {
       try {
@@ -43,6 +31,10 @@ const GenrePage = () => {
 
     fetchGenreInfo();
   }, [genreId]);
+
+  if (status === "unauthenticated") {
+    redirect("/");
+  }
 
   if (isLoading) {
     return (
