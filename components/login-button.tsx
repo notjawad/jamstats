@@ -1,9 +1,20 @@
+"use client";
+
+import { signIn } from "next-auth/react";
 import React, { ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
 
 const LoginButton = ({ className, ...props }: ComponentProps<"button">) => {
+  const handleSignIn = () => {
+    signIn("spotify", { callbackUrl: `${window.location.origin}/dashboard` });
+  };
+
   return (
-    <button className={twMerge("login-button", className)} {...props}>
+    <button
+      onClick={handleSignIn}
+      className={twMerge("login-button", className)}
+      {...props}
+    >
       <span className="flex items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
