@@ -70,7 +70,7 @@ const GenrePage = () => {
                   Similar to {toTitleCase(genreInfo?.tag.name)}
                 </p>
               )}
-              <div className="mt-2 flex flex-wrap items-center gap-x-4">
+              <div className="mt-2 flex flex-wrap items-center gap-x-2">
                 {similarTags.slice(0, 8).map((tag) => (
                   <Link key={tag} className="" href={`/genres/${tag}`}>
                     <Badge variant="outline" key={tag} className="mb-2">
