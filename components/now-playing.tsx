@@ -54,43 +54,54 @@ const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
   return (
     <div
       className={twMerge(
-        "flex items-center justify-center rounded bg-gradient-to-r from-green-600 to-green-500 p-2",
+        "relative flex items-center justify-center overflow-hidden rounded border border-black/10 p-2 dark:border-white/10",
         className ?? "",
       )}
       {...props}
     >
       {track && (
         <>
-          <Image
-            src={track.album.images[0].url}
-            alt="Album Art"
-            width={40}
-            height={40}
-            className="mr-3 h-10 w-10 rounded shadow-md"
-            loading="lazy"
+          <div
+            className="absolute inset-0 bg-cover bg-center blur-[20px]"
+            style={{ backgroundImage: `url(${track.album.images[0].url})` }}
           />
-          <div className="flex flex-col items-start">
-            <div className="flex items-center">
-              <Link
-                className="font-semibold text-white hover:underline"
-                href={track.external_urls.spotify}
-              >
-                {track.name.length > 25
-                  ? `${track.name.substring(0, 25)}...`
-                  : track.name}
-              </Link>
-              <div className="bars ml-4 mr-4 inline-flex h-3 items-end justify-between gap-[0.1875rem]">
-                <div className="bar bar1 w-1 bg-gray-100"></div>
-                <div className="bar bar2 w-1 bg-gray-100"></div>
-                <div className="bar bar3 w-1 bg-gray-100"></div>
+
+          <div
+            className={twMerge(
+              "relative flex items-center justify-center gap-x-2 bg-transparent",
+            )}
+          >
+            <Image
+              src={track.album.images[0].url}
+              alt="Album Art"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded shadow-md"
+              loading="lazy"
+            />
+            <div className="flex flex-col items-start text-white">
+              <div className="flex items-center">
+                <Link
+                  className="font-semibold hover:underline"
+                  href={track.external_urls.spotify}
+                >
+                  {track.name.length > 25
+                    ? `${track.name.substring(0, 25)}...`
+                    : track.name}
+                </Link>
+                <div className="bars ml-4 mr-4 inline-flex h-3 items-end justify-between gap-[0.1875rem]">
+                  <div className="bar bar1 w-[2px] bg-gray-200"></div>
+                  <div className="bar bar2 w-[2px] bg-gray-200"></div>
+                  <div className="bar bar3 w-[2px] bg-gray-200"></div>
+                </div>
               </div>
+              <Link
+                className="text-xs font-semibold hover:underline"
+                href={track.album.external_urls.spotify}
+              >
+                {track.artists.map((artist) => artist.name).join(", ")}
+              </Link>
             </div>
-            <Link
-              className="text-xs font-semibold text-black/70 hover:underline"
-              href={track.album.external_urls.spotify}
-            >
-              {track.artists.map((artist) => artist.name).join(", ")}
-            </Link>
           </div>
         </>
       )}
