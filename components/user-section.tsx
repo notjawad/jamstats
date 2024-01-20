@@ -28,7 +28,7 @@ const UserSection = ({ className, label, ...props }: UserSectionProps) => {
           <h2 className="truncate text-lg font-medium leading-6">
             {session?.user?.name}
           </h2>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">{label}</p>
+          <p className="text-sm text-muted-foreground">{label}</p>
         </div>
       </div>
       <NowPlaying className="hidden sm:flex" />
