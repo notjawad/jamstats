@@ -150,7 +150,6 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
                 ))}
 
               {type === "tracks" &&
-                topArtists.length > 0 &&
                 topTracks.map((track, index) => (
                   <tr key={track.id}>
                     <td className="whitespace-nowrap px-6 py-4 text-sm">
