@@ -1,20 +1,14 @@
-"use client";
-
-import { useSession } from "next-auth/react";
-import { Spinner } from "@/components/spinner";
 import { redirect } from "next/navigation";
 import Hero from "@/components/hero";
+import { getServerSession } from "next-auth";
 
-export default function Home() {
-  const { data: session, status } = useSession();
+export const metadata = {
+  title: "Spotstats",
+  description: "Spotstats is a Spotify statistics dashboard.",
+};
 
-  if (status === "loading") {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
+export default async function Home() {
+  const session = await getServerSession();
 
   if (session) {
     redirect("/dashboard");
