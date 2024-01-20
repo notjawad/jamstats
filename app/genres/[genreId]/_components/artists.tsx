@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ComponentProps, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
@@ -5,25 +7,26 @@ import axios from "axios";
 
 import Link from "next/link";
 import Image from "next/image";
-import { Spinner } from "@/components/spinner";
 import { BsSpotify } from "react-icons/bs";
 
 import { Artist, TagArtist } from "@/lib/spotify/types";
 import { toTitleCase } from "@/lib/utils";
-
-interface ArtistsProps extends ComponentProps<"div"> {
-  tag: string | undefined;
-}
+import { useParams } from "next/navigation";
+import { Icons } from "@/components/spinner";
 
 interface A extends TagArtist {
   spotify: Artist;
 }
 
-const Artists = ({ tag, className, ...props }: ArtistsProps) => {
+const Artists = ({ className, ...props }: ComponentProps<"div">) => {
   const [artists, setArtists] = useState<A[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { data: session } = useSession();
+  const params = useParams();
+  const tag = params.genreId;
+
+  const { data: session, status } = useSession();
+
   useEffect(() => {
     if (session && "access_token" in session) {
       const fetchArtists = async () => {
@@ -57,7 +60,11 @@ const Artists = ({ tag, className, ...props }: ArtistsProps) => {
   }, []);
 
   if (isLoading) {
-    return null;
+    return (
+      <div className="flex items-center justify-center">
+        <Icons.spinner className="h-8 w-8 animate-spin" />
+      </div>
+    );
   }
 
   if (artists.length === 0) {
@@ -67,7 +74,7 @@ const Artists = ({ tag, className, ...props }: ArtistsProps) => {
   return (
     <div {...props}>
       <h2 className="mb-4 text-xl font-bold">
-        Top artists in {toTitleCase(tag)}
+        Top artists in {toTitleCase(decodeURIComponent(tag.toString()))}
       </h2>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
         {artists.map((artist) => (
@@ -84,7 +91,11 @@ const Artists = ({ tag, className, ...props }: ArtistsProps) => {
               alt={artist.name}
               width={200}
               height={200}
-              className="h-28 w-28 rounded-full"
+              className="h-28 w-28 rounded-full opacity-0 transition-opacity duration-500 ease-in-out"
+              loading="lazy"
+              onLoad={(image) => {
+                image.currentTarget.classList.remove("opacity-0");
+              }}
             />
             <h3 className="mt-2 line-clamp-1 text-center text-lg font-bold">
               {artist.name}
