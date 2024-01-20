@@ -24,7 +24,7 @@ export async function generateMetadata({
         decodeURIComponent(params.genreId),
       )}`,
       type: "website",
-      url: `https://spotstats.net/genres/${params.genreId}`,
+      // url: `https://spotstats.net/genres/${params.genreId}`,
       site_name: "Spotstats",
     },
   };
