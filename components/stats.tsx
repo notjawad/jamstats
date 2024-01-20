@@ -103,12 +103,12 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
       <div
         className={cn(
           "flex min-w-full items-center py-2 align-middle md:inline-block",
-          topArtists.length > 0 ? "mt-36" : "",
+          topArtists.length > 0 && "mt-36",
         )}
       >
         <ScrollArea
           className={cn(
-            "h-[400px] rounded-md border p-4",
+            "h-[400px] w-full rounded-md border p-4",
             topTracks.length > 0 && "mt-36",
           )}
         >
