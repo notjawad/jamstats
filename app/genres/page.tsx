@@ -1,27 +1,21 @@
-"use client";
-
 import React from "react";
-import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
-import { Spinner } from "@/components/spinner";
 import { PopularGenres } from "@/components/popular-genres";
 
 import AllGenresSection from "@/components/all-genres-section";
+import { getServerSession } from "next-auth";
 
-const GenresPage = () => {
-  const { data: session, status } = useSession();
+export const metadata = {
+  title: "Spotstats - Genres",
+  description: "Explore new songs, artists, and playlists by music genre.",
+};
 
-  if (status === "loading") {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
+const GenresPage = async () => {
+  const session = await getServerSession();
 
-  if (status === "unauthenticated") {
-    redirect("/");
+  if (!session) {
+    return redirect("/");
   }
 
   return (
