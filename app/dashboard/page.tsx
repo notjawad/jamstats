@@ -40,10 +40,13 @@ const Dashboard = () => {
               <h1 className="mb-2 inline-block text-3xl font-extrabold tracking-tight">
                 Dashboard
               </h1>
-              <p className="text mb-12 xl:mr-64">
+              <p className="text mb-12 text-muted-foreground xl:mr-64">
                 Explore your top artists, tracks, and{" "}
-                <Link href="/genres">
-                  <Badge variant="outline">genres</Badge>
+                <Link
+                  className="text-green-500 transition-colors duration-150 ease-in-out hover:text-green-600"
+                  href="/genres"
+                >
+                  genres
                 </Link>
               </p>
             </div>
