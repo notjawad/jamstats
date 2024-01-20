@@ -65,9 +65,11 @@ const GenrePage = () => {
                 {removeHtmlTags(genreInfo?.tag.wiki.content) ||
                   "No description available"}
               </p>
-              <p className="mb-2 text-sm font-semibold">
-                Similar to {toTitleCase(genreInfo?.tag.name)}
-              </p>
+              {similarTags.length > 0 && (
+                <p className="mb-2 text-sm font-semibold">
+                  Similar to {toTitleCase(genreInfo?.tag.name)}
+                </p>
+              )}
               <div className="mt-2 flex flex-wrap items-center gap-x-4">
                 {similarTags.slice(0, 8).map((tag) => (
                   <Link key={tag} className="" href={`/genres/${tag}`}>
