@@ -57,7 +57,7 @@ const Artists = ({ className, ...props }: ComponentProps<"div">) => {
 
       fetchArtists();
     }
-  }, []);
+  }, [tag, session]);
 
   if (isLoading) {
     return (
