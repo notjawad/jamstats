@@ -1,31 +1,21 @@
-"use client";
-
 import React from "react";
 
-import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
-import { Spinner } from "@/components/spinner";
 import TopArtists from "@/components/top-artists";
 import TopTracks from "@/components/top-tracks";
 import TopGenres from "@/components/top-genres";
-import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
-const Dashboard = () => {
-  const { data: session, status } = useSession();
+import { getServerSession } from "next-auth";
 
-  if (status === "loading") {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
+export const metadata = {
+  title: "Spotstats",
+  description: "Spotstats is a Spotify statistics dashboard.",
+};
 
-  if (status === "unauthenticated") {
-    redirect("/");
-  }
+const Dashboard = async () => {
+  const session = await getServerSession();
 
   if (!session) {
     redirect("/");
