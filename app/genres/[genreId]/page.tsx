@@ -1,9 +1,10 @@
-import { redirect, useSearchParams } from "next/navigation";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth/next";
 
 import GenreInfo from "./_components/genre-info";
-import { getServerSession } from "next-auth/next";
 import Artists from "./_components/artists";
 import { toTitleCase } from "@/lib/utils";
+import Playlist from "./_components/playlist";
 
 export async function generateMetadata({
   params,
@@ -36,6 +37,7 @@ const GenrePage = async (props: {
           <div className="pb-10">
             <GenreInfo />
             <Artists />
+            <Playlist genre={props.params.genreId} className="mt-4" />
           </div>
         </div>
       </div>
