@@ -53,7 +53,7 @@ const Artists = ({ tag, className, ...props }: ArtistsProps) => {
 
       fetchArtists();
     }
-  }, [session, tag]);
+  }, []);
 
   if (isLoading) {
     return null;
