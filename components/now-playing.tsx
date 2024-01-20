@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ComponentProps, useEffect } from "react";
 import { Track } from "@/lib/spotify/types";
 
@@ -65,6 +67,7 @@ const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
             width={40}
             height={40}
             className="mr-3 h-10 w-10 rounded shadow-md"
+            loading="lazy"
           />
           <div className="flex flex-col items-start">
             <div className="flex items-center">
