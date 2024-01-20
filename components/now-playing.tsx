@@ -5,6 +5,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
+import Image from "next/image";
 
 const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
   const [track, setTrack] = React.useState<Track | null>(null);
@@ -14,7 +15,6 @@ const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
 
   useEffect(() => {
     if (session && "access_token" in session) {
-      console.log(session.access_token);
       const fetchNowPlaying = async () => {
         try {
           const response = await axios.get(
@@ -59,9 +59,11 @@ const NowPlaying = ({ className, ...props }: ComponentProps<"div">) => {
     >
       {track && (
         <>
-          <img
+          <Image
             src={track.album.images[0].url}
             alt="Album Art"
+            width={40}
+            height={40}
             className="mr-3 h-10 w-10 rounded shadow-md"
           />
           <div className="flex flex-col items-start">

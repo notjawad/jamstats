@@ -42,7 +42,7 @@ const GenrePage = () => {
     };
 
     fetchGenreInfo();
-  }, []);
+  }, [genreId]);
 
   if (isLoading) {
     return (
