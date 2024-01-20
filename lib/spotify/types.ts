@@ -1,27 +1,24 @@
 export type User = {
   display_name: string;
-  external_urls: ExternalUrls;
+  external_urls: { spotify: string };
   href: string;
   id: string;
   images: any[];
   type: string;
   uri: string;
-  followers: Followers;
+  followers: {
+    href: null;
+    total: number;
+  };
   email: string;
 };
 
-export type ExternalUrls = {
-  spotify: string;
-};
-
-export type Followers = {
-  href: null;
-  total: number;
-};
-
 export type Artist = {
-  external_urls: ExternalUrls;
-  followers: Followers;
+  external_urls: { spotify: string };
+  followers: {
+    href: null;
+    total: number;
+  };
   genres: string[];
   href: string;
   id: string;
@@ -45,7 +42,9 @@ export type Track = {
   disc_number: number;
   duration_ms: number;
   explicit: boolean;
-  external_urls: ExternalUrls;
+  external_urls: {
+    spotify: string;
+  };
   href: string;
   id: string;
   is_local: boolean;
@@ -61,7 +60,9 @@ export type Album = {
   album_type: string;
   artists: Artist[];
   available_markets: string[];
-  external_urls: ExternalUrls;
+  external_urls: {
+    spotify: string;
+  };
   href: string;
   id: string;
   images: Image[];
@@ -71,4 +72,22 @@ export type Album = {
   total_tracks: number;
   type: string;
   uri: string;
+};
+
+export type Tag = {
+  tag: {
+    name: string;
+    total: number;
+    reach: number;
+    wiki: { summary: string; content: string };
+  };
+};
+
+export type TagArtist = {
+  name: string;
+  mbid: string;
+  url: string;
+  streamable: string;
+  image: { "#text": string; size: string }[];
+  "@attr": { rank: string };
 };
