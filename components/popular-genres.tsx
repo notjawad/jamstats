@@ -12,31 +12,37 @@ export const PopularGenres = ({
       name: "pop",
       color: "bg-pink-300",
       image: "/images/genres/pop.png",
+      href: "/genres/pop",
     },
     {
       name: "hip hop",
       color: "bg-yellow-300",
       image: "/images/genres/hip-hop.png",
+      href: "/genres/hip-hop",
     },
     {
       name: "rock",
       color: "bg-gray-600",
       image: "/images/genres/rock.png",
+      href: "/genres/rock",
     },
     {
       name: "indie",
       color: "bg-violet-300",
       image: "/images/genres/indie.png",
+      href: "/genres/indie",
     },
     {
       name: "edm",
       color: "bg-green-300",
       image: "/images/genres/edm.png",
+      href: "/genres/edm",
     },
     {
       name: "r&b",
       color: "bg-blue-300",
       image: "/images/genres/rnb.png",
+      href: "/genres/rnb",
     },
   ];
 
@@ -52,7 +58,7 @@ export const PopularGenres = ({
       <div className="mt-2 grid grid-cols-1 gap-4 md:grid-cols-2">
         {genres.map((genre) => (
           <Link
-            href={`/genres/${genre.name}`}
+            href={genre.href}
             key={genre.name}
             className={twMerge(
               "group flex cursor-pointer items-center justify-between overflow-hidden rounded-lg border border-black/10 dark:border-white/10",
