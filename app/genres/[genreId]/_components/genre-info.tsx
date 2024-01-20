@@ -39,8 +39,7 @@ const GenreInfo = () => {
         {toTitleCase(genreInfo?.tag.name)}
       </h1>
       <p className="mb-4 line-clamp-6 w-full text-sm text-muted-foreground xl:mr-64">
-        {removeHtmlTags(genreInfo?.tag.wiki.content) ||
-          "No description available"}
+        {removeHtmlTags(genreInfo?.tag.wiki.content) || ""}
       </p>
       {similarTags.length > 0 && (
         <p className="mb-2 text-sm font-semibold">
