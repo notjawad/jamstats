@@ -48,7 +48,7 @@ const GenreSection = ({
                       <span className="truncate font-medium">
                         {genre.genre}
                       </span>
-                      <ExternalLink className="h-3 w-3 text-black/50 opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100 dark:text-black dark:text-white/50" />
+                      <ExternalLink className="h-3 w-3 text-black/50 dark:text-white/50" />
                     </Badge>
                   </Link>
                 </td>
