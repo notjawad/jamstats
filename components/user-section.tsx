@@ -42,7 +42,7 @@ const UserSection = ({ className, label, ...props }: UserSectionProps) => {
           alt="User Image"
           width={64}
           height={64}
-          className="rounded-md shadow-md"
+          className="rounded-md"
         />
         <div className="ml-4 truncate">
           <h2 className="truncate text-lg font-medium leading-6">
