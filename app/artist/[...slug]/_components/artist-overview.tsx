@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge";
 
 import { Artist } from "@/interfaces";
 import { Icons } from "@/components/spinner";
-import { toast, ExternalToast } from "sonner";
+import { toast } from "sonner";
 import ArtistCard from "./artist-card";
 import { ArtistDescription } from "./artist-desc";
 import { MdError } from "react-icons/md";
