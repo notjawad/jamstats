@@ -7,7 +7,7 @@ import AllGenresSection from "@/components/all-genres-section";
 import { getServerSession } from "next-auth";
 
 export const metadata = {
-  title: "Spotstats - Genres",
+  title: "Jamstats - Genres",
   description: "Explore new songs, artists, and playlists by music genre.",
 };
 

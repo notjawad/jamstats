@@ -10,8 +10,8 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 
 export const metadata = {
-  title: "Spotstats",
-  description: "Spotstats is a Spotify statistics dashboard.",
+  title: "Jamstats - Dashboard",
+  description: "Jamstats is a tool for tracking your Spotify listening habits.",
 };
 
 const Dashboard = async () => {
