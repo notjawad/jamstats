@@ -3,6 +3,8 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { Quote } from "lucide-react";
+import ArtistTopTracks from "./artist-top-tracks";
+import ArtistAlbums from "./artist-albums";
 
 interface ChildProps {
   tag?: keyof JSX.IntrinsicElements;
@@ -103,17 +105,19 @@ export const ArtistDescription: React.FC<DescriptionProps> = ({
               ? description.children
               : [description.children && description.children[0]],
           )}
-          <button onClick={toggleDescription}>
+          <div onClick={toggleDescription}>
             {showFullDescription ? (
-              <Button size="sm" variant="outline">
+              <Button className="font-semibold" size="sm" variant="outline">
                 Read Less
               </Button>
             ) : (
-              <Button size="sm" variant="outline">
+              <Button className="font-semibold" size="sm" variant="outline">
                 Read More
               </Button>
             )}
-          </button>
+          </div>
+          <ArtistTopTracks className="mt-3" />
+          <ArtistAlbums className="mt-3" />
         </>
       ) : (
         <p>Description not available</p>
