@@ -17,7 +17,7 @@ const Footer = ({ className, ...props }: ComponentProps<"footer">) => {
     >
       <div className="flex flex-col items-center justify-center gap-y-2 text-center">
         <div className="flex items-center justify-center gap-x-2">
-          <Link href="https://github.com/notjawad/spotify-stats">
+          <Link href="https://github.com/notjawad/jamstats">
             <Button size="icon" variant="ghost">
               <BsGithub className="text-2xl text-gray-500 dark:text-gray-400" />
             </Button>
