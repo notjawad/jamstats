@@ -66,7 +66,7 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
                 key={index}
               >
                 <div className="absolute inset-0 z-10">
-                  <div className="h-36 w-36 animate-pulse rounded-md border border-black/10 bg-accent dark:border-white/10" />
+                  <div className="h-36 w-full animate-pulse rounded-md border border-black/10 bg-accent dark:border-white/10 md:w-36" />
                 </div>
               </div>
             ))
@@ -78,7 +78,7 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
                 key={artist.id}
               >
                 <Link
-                  href={`/artist/${artist.id}`}
+                  href={`/artist/${artist.id}/${artist.name}`}
                   className="absolute inset-0 z-10"
                 >
                   <Image
@@ -166,7 +166,9 @@ const Stats = ({ className, type, timeframe, ...props }: StatsProps) => {
                         height={50}
                         className="h-8 w-8 rounded-md object-cover"
                       />
-                      <Link href={`/artist/${artist.id}`}>{artist.name}</Link>
+                      <Link href={`/artist/${artist.id}/${artist.name}`}>
+                        {artist.name}
+                      </Link>
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 text-center text-sm">
                       {artist.popularity}
