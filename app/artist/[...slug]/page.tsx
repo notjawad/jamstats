@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
 import ArtistOverview from "./_components/artist-overview";
+import ArtistTopTracks from "./_components/artist-top-tracks";
 
 const GenrePage = async (props: { params: any }) => {
   const session = await getServerSession();
