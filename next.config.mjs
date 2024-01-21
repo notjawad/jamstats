@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "lastfm.freetls.fastly.net",
+        hostname: "images.genius.com",
       },
     ],
   },
