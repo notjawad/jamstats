@@ -19,7 +19,11 @@ const ArtistCard = ({ artist, className, ...props }: ArtistCardProps) => {
           alt={artist?.name || "Artist"}
           width={200}
           height={200}
-          className="h-20 w-20 rounded-full"
+          className="h-20 w-20 rounded-full opacity-0 transition-opacity duration-300 ease-in-out"
+          loading="lazy"
+          onLoad={(image) => {
+            image.currentTarget.classList.remove("opacity-0");
+          }}
         />
         <div>
           <h2 className="mt-4 flex items-center text-xl font-bold">
