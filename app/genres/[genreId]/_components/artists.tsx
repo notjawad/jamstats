@@ -30,29 +30,30 @@ const Artists = ({ className, ...props }: ComponentProps<"div">) => {
   useEffect(() => {
     if (session && "access_token" in session) {
       const fetchArtists = async () => {
-        const { data } = await axios.get(`/api/tag/artists?tag=${tag}`);
-        const artists = data.topartists.artist;
+        try {
+          const { data } = await axios.get(
+            `https://api.spotify.com/v1/search?q=genre:${tag}&type=artist`,
 
-        const spotifyArtists = await Promise.all(
-          artists.map(async (artist: Artist) => {
-            const response = await fetch(
-              `https://api.spotify.com/v1/search?q=${encodeURIComponent(artist.name)}&type=artist`,
-              {
-                headers: {
-                  Authorization: `Bearer ${session?.access_token}`,
-                },
+            {
+              headers: {
+                Authorization: `Bearer ${session.access_token}`,
               },
-            );
-            const spotifyData = await response.json();
-            return {
-              ...artist,
-              spotify: spotifyData.artists.items[0],
-            };
-          }),
-        );
+            },
+          );
 
-        setArtists(spotifyArtists);
-        setIsLoading(false);
+          const artists = data.artists.items.map((artist: Artist) => ({
+            spotify: artist,
+            name: artist.name,
+            genres: artist.genres,
+            popularity: artist.popularity,
+            images: artist.images,
+          }));
+
+          setArtists(artists);
+          setIsLoading(false);
+        } catch (error) {
+          console.error(error);
+        }
       };
 
       fetchArtists();
