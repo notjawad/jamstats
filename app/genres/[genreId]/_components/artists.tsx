@@ -79,8 +79,11 @@ const Artists = ({ className, ...props }: ComponentProps<"div">) => {
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
         {artists.map((artist) => (
           <div
+            onClick={() => {
+              window.location.href = `/artist/${artist.spotify.id}/${artist.name}`;
+            }}
             key={artist.spotify.id}
-            className="flex flex-col items-center justify-center rounded-md border border-black/10 bg-accent p-4 dark:border-white/10"
+            className="flex cursor-pointer flex-col items-center justify-center rounded-md border border-black/10 bg-accent p-4 transition-shadow duration-150 ease-in-out hover:shadow-lg dark:border-white/10 dark:shadow-accent"
           >
             <Image
               src={
