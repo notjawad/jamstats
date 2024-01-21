@@ -51,7 +51,8 @@ const ArtistTopTracks = ({ className, ...props }: ComponentProps<"div">) => {
         Top Tracks
       </h2>
       <p className="flex items-center gap-x-1 text-sm text-muted-foreground">
-        The most popular tracks by <span className="font-bold">{slug[1]}</span>
+        The most popular tracks by{" "}
+        <span className="font-bold">{decodeURIComponent(slug[1])}</span>
       </p>
       <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3">
         {topTracks.map((track) => (
