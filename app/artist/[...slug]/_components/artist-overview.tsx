@@ -62,7 +62,7 @@ const ArtistOverview = ({
   if (error) {
     if (!errorToastId) {
       setErrorToastId(
-        toast.error("Whoops! I couldn't find that artist.", {
+        toast.error("Whoops! I couldn&apos;t find that artist.", {
           description: error,
         }),
       );
@@ -74,7 +74,8 @@ const ArtistOverview = ({
           <MdError className="h-32 w-32 text-red-500 dark:text-rose-500" />
           <h1 className="text-center text-2xl font-bold">Artist not found</h1>
           <p className="text-center text-muted-foreground">
-            Sorry about that! I couldn't find the artist you were looking for.
+            Sorry about that! I couldn&apos;t find the artist you were looking
+            for.
           </p>
         </div>
       </div>
