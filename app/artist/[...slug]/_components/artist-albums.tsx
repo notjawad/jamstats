@@ -51,7 +51,7 @@ const ArtistAlbums = ({ className, ...props }: ComponentProps<"div">) => {
         Top Albums
       </h2>
       <p className="flex items-center gap-x-1 text-sm text-muted-foreground">
-        <span className="font-bold">{slug[1]}&apos;s</span>
+        <span className="font-bold">{decodeURIComponent(slug[1])}&apos;s</span>
         most popular albums
       </p>
       <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3">
