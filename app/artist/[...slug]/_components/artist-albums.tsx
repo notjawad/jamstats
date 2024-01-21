@@ -47,7 +47,9 @@ const ArtistAlbums = ({ className, ...props }: ComponentProps<"div">) => {
 
   return (
     <div {...props} className={twMerge("", className)}>
-      <h2 className="text-2xl font-bold">Top Albums</h2>
+      <h2 className="text-2xl font-bold text-black dark:text-white">
+        Top Albums
+      </h2>
       <p className="flex items-center gap-x-1 text-sm text-muted-foreground">
         <span className="font-bold">{slug[1]}&apos;s</span>
         most popular albums
