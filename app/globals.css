@@ -51,7 +51,7 @@ span:nth-of-type(2) {
   position: absolute;
 }
 
-em {
+.login-text {
   font-style: normal;
   display: inline-block;
   font-size: 1.125rem;
@@ -63,11 +63,11 @@ em {
     opacity 0.35s linear 0.2s;
 }
 
-span:nth-of-type(1) em {
+span:nth-of-type(1) .login-text {
   transform-origin: top;
 }
 
-span:nth-of-type(2) em {
+span:nth-of-type(2) .login-text {
   opacity: 0;
   transform: rotateX(-90deg) scaleX(0.9) translate3d(0, 10px, 0);
   transform-origin: bottom;
