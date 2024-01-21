@@ -32,7 +32,7 @@ const Artists = ({ className, ...props }: ComponentProps<"div">) => {
       const fetchArtists = async () => {
         try {
           const { data } = await axios.get(
-            `https://api.spotify.com/v1/search?q=genre:${tag}&type=artist`,
+            `https://api.spotify.com/v1/search?q=genre:${decodeURIComponent(tag.toString())}&type=artist`,
 
             {
               headers: {
