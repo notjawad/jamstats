@@ -35,6 +35,10 @@ export const ArtistDescription: React.FC<DescriptionProps> = ({
         return null;
       }
 
+      if (tag === "br") {
+        return null;
+      }
+
       if (tag === "a" && attributes) {
         attributes.className = "text-emerald-500";
       }
@@ -99,7 +103,7 @@ export const ArtistDescription: React.FC<DescriptionProps> = ({
               ? description.children
               : [description.children && description.children[0]],
           )}
-          <button className="mt-2" onClick={toggleDescription}>
+          <button onClick={toggleDescription}>
             {showFullDescription ? (
               <Button size="sm" variant="outline">
                 Read Less
