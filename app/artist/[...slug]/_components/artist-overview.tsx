@@ -1,15 +1,16 @@
 "use client";
 
 import React, { ComponentProps, useEffect, useState } from "react";
+import axios from "axios";
+
+import { twMerge } from "tailwind-merge";
 
 import { Artist } from "@/interfaces";
 import { Icons } from "@/components/spinner";
 import { toast, ExternalToast } from "sonner";
-
-import axios from "axios";
-import { twMerge } from "tailwind-merge";
-import { MdError } from "react-icons/md";
+import ArtistCard from "./artist-card";
 import { ArtistDescription } from "./artist-desc";
+import { MdError } from "react-icons/md";
 
 interface ArtistOverviewProps extends ComponentProps<"div"> {
   artistName: string;
@@ -31,7 +32,7 @@ const ArtistOverview = ({
     const fetchArtist = async () => {
       try {
         const { data } = await axios.get("/api/genius/artist", {
-          params: { artist: artistName },
+          params: { artist: decodeURIComponent(artistName) },
         });
 
         if (data.error) {
@@ -82,7 +83,7 @@ const ArtistOverview = ({
 
   return (
     <div className={twMerge("", className)} {...props}>
-      <h1 className="text-3xl font-bold">{artist?.name}</h1>
+      <ArtistCard artist={artist} />
       {artist?.description?.dom && (
         <ArtistDescription
           avatar={artist.image_url}
