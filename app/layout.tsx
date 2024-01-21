@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SessionProvider } from "next-auth/react";
+import Footer from "@/components/footer";
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -25,6 +26,7 @@ export default function RootLayout({ children, session }: RootLayoutProps) {
           >
             <Navbar />
             {children}
+            <Footer />
             <Toaster />
           </ThemeProvider>
         </SessionProvider>
