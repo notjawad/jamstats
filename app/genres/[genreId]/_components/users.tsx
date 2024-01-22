@@ -9,9 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BsSpotify } from "react-icons/bs";
 
-import { toTitleCase } from "@/lib/utils";
 import { useParams } from "next/navigation";
-import { Icons } from "@/components/spinner";
 import { twMerge } from "tailwind-merge";
 
 import {
