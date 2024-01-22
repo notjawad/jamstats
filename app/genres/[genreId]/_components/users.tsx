@@ -9,7 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BsSpotify } from "react-icons/bs";
 
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 
 import {
@@ -34,6 +34,10 @@ const Users = ({ className, ...props }: ComponentProps<"div">) => {
   const tag = (params.genreId as string).replace(/%20/g, "-");
 
   const { data: session, status } = useSession();
+
+  if (status === "unauthenticated") {
+    redirect("/");
+  }
 
   useEffect(() => {
     if (session && "access_token" in session) {
@@ -85,7 +89,11 @@ const Users = ({ className, ...props }: ComponentProps<"div">) => {
                       src={user.image_url || "/images/placeholder.png"}
                       alt={user.display_name}
                       layout="fill"
-                      className="rounded-full"
+                      className="rounded-full opacity-0 transition-opacity duration-500 ease-in-out"
+                      loading="lazy"
+                      onLoad={(image) => {
+                        image.currentTarget.classList.remove("opacity-0");
+                      }}
                     />
                   </div>
                   <h3 className="mt-2 text-sm text-muted-foreground">
