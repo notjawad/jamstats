@@ -33,7 +33,7 @@ const Dashboard = async () => {
               <p className="text mb-12 text-muted-foreground xl:mr-64">
                 Explore your top artists, tracks, and{" "}
                 <Link
-                  className="text-green-500 transition-colors duration-150 ease-in-out hover:text-green-600"
+                  className="text-emerald-500 transition-colors duration-150 ease-in-out hover:text-green-600"
                   href="/genres"
                 >
                   genres
