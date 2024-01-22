@@ -12,7 +12,6 @@ import { BsSpotify } from "react-icons/bs";
 import { toTitleCase } from "@/lib/utils";
 import { useParams } from "next/navigation";
 import { Icons } from "@/components/spinner";
-import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 
 interface Artist {
