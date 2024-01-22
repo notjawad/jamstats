@@ -6,7 +6,6 @@ import Artists from "./_components/artists";
 import { toTitleCase } from "@/lib/utils";
 import Playlist from "./_components/playlist";
 import Users from "./_components/users";
-import { BsSpotify } from "react-icons/bs";
 
 export async function generateMetadata({
   params,
