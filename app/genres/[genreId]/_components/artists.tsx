@@ -9,21 +9,30 @@ import Link from "next/link";
 import Image from "next/image";
 import { BsSpotify } from "react-icons/bs";
 
-import { Artist, TagArtist } from "@/lib/spotify/types";
 import { toTitleCase } from "@/lib/utils";
 import { useParams } from "next/navigation";
 import { Icons } from "@/components/spinner";
+import { toast } from "sonner";
+import { twMerge } from "tailwind-merge";
 
-interface A extends TagArtist {
-  spotify: Artist;
+interface Artist {
+  id: string;
+  images?:
+    | {
+        height: number;
+        url: string;
+        width: number;
+      }[]
+    | null;
+  name: string;
 }
 
 const Artists = ({ className, ...props }: ComponentProps<"div">) => {
-  const [artists, setArtists] = useState<A[]>([]);
+  const [artists, setArtists] = useState<Artist[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const params = useParams();
-  const tag = params.genreId;
+  const tag = (params.genreId as string).replace(/%20/g, "-");
 
   const { data: session, status } = useSession();
 
@@ -32,27 +41,19 @@ const Artists = ({ className, ...props }: ComponentProps<"div">) => {
       const fetchArtists = async () => {
         try {
           const { data } = await axios.get(
-            `https://api.spotify.com/v1/search?q=genre:${decodeURIComponent(tag.toString())}&type=artist`,
-
+            "https://jamstats-api.vercel.app/api/users",
             {
-              headers: {
-                Authorization: `Bearer ${session.access_token}`,
+              params: {
+                genreId: tag,
               },
             },
           );
 
-          const artists = data.artists.items.map((artist: Artist) => ({
-            spotify: artist,
-            name: artist.name,
-            genres: artist.genres,
-            popularity: artist.popularity,
-            images: artist.images,
-          }));
-
-          setArtists(artists);
+          setArtists(data.topArtists);
           setIsLoading(false);
         } catch (error) {
           console.error(error);
+          setIsLoading(false);
         }
       };
 
@@ -73,7 +74,7 @@ const Artists = ({ className, ...props }: ComponentProps<"div">) => {
   }
 
   return (
-    <div {...props}>
+    <div {...props} className={twMerge("", className)}>
       <h2 className="mb-4 text-xl font-bold">
         Top artists in {toTitleCase(decodeURIComponent(tag.toString()))}
       </h2>
@@ -81,21 +82,21 @@ const Artists = ({ className, ...props }: ComponentProps<"div">) => {
         {artists.map((artist) => (
           <div
             onClick={() => {
-              window.location.href = `/artist/${artist.spotify.id}/${artist.name}`;
+              window.location.href = `/artist/${artist.id}/${artist.name}`;
             }}
-            key={artist.spotify.id}
-            className="flex cursor-pointer flex-col items-center justify-center rounded-md border border-black/10 bg-accent p-4 transition-shadow duration-150 ease-in-out hover:shadow-lg dark:border-white/10 dark:shadow-accent"
+            key={artist.id}
+            className="flex cursor-pointer flex-col items-center justify-center rounded-md border border-black/10 bg-accent p-4 transition-all duration-150 ease-in-out hover:border-black/20 dark:border-white/10 hover:dark:border-white/20"
           >
             <Image
               src={
-                artist.spotify.images && artist.spotify.images.length > 0
-                  ? artist.spotify.images[0].url
+                artist.images && artist.images.length > 0
+                  ? artist.images[0].url
                   : "/images/artist-placeholder.png"
               }
               alt={artist.name}
               width={200}
               height={200}
-              className="h-28 w-28 rounded-full opacity-0 transition-opacity duration-500 ease-in-out"
+              className="h-16 w-16 rounded-full opacity-0 transition-opacity duration-500 ease-in-out"
               loading="lazy"
               onLoad={(image) => {
                 image.currentTarget.classList.remove("opacity-0");
@@ -105,15 +106,15 @@ const Artists = ({ className, ...props }: ComponentProps<"div">) => {
               {artist.name}
             </h3>
             <Link
-              className="mt-2 hidden items-center gap-x-2 rounded-md border border-black/10 bg-white px-4 py-2 text-sm font-medium transition-colors duration-150 ease-in-out hover:border-black/20 hover:bg-black/10 dark:border-white/10 dark:bg-stone-800 dark:hover:border-white/20 dark:hover:bg-stone-700 md:flex"
-              href={artist.spotify.external_urls.spotify}
+              className="mt-2 hidden items-center gap-x-2 rounded-md border border-black/10 bg-white px-2 py-1 text-sm font-medium transition-colors duration-150 ease-in-out hover:border-black/20 hover:bg-black/10 dark:border-white/10 dark:bg-stone-800 dark:hover:border-white/20 dark:hover:bg-stone-700 md:flex"
+              href={`https://open.spotify.com/artist/${artist.id}`}
             >
-              <BsSpotify className="text-green-500" />
+              <BsSpotify className="text-emerald-500" />
               Listen on Spotify
             </Link>
             <Link
-              className="mt-2 flex items-center gap-x-2 rounded-md border border-black/10 bg-white px-4 py-2 text-sm font-medium transition-colors duration-150 ease-in-out hover:border-black/20 hover:bg-black/10 dark:border-white/10 dark:bg-stone-800 dark:hover:border-white/20 dark:hover:bg-stone-700 md:hidden"
-              href={artist.spotify.external_urls.spotify}
+              className="mt-2 flex w-full items-center justify-center gap-x-2 rounded-md border border-black/10 bg-white px-2 py-1 text-sm font-medium transition-colors duration-150 ease-in-out hover:border-black/20 hover:bg-black/10 dark:border-white/10 dark:bg-stone-800 dark:hover:border-white/20 dark:hover:bg-stone-700 md:hidden md:w-fit"
+              href={`https://open.spotify.com/artist/${artist.id}`}
             >
               <BsSpotify className="text-green-500" />
               Listen
