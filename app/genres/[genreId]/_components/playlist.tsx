@@ -59,7 +59,7 @@ const Playlist = ({ genre, className, ...props }: PlaylistProps) => {
             <h1 className="text-2xl font-bold">Playlist</h1>
             <p className="mb-4 flex items-center gap-x-1 text-sm font-medium text-muted-foreground">
               Here is a playlist to get you started with{" "}
-              <span className="text-green-500">
+              <span className="text-emerald-500">
                 {decodeURIComponent(genre)}
               </span>{" "}
               😀
